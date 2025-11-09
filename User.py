@@ -58,6 +58,7 @@ def search_user():
     except Exception as e:
             messagebox.showerror("Database Error", str(e))
             return
+    
 #update function           
 def update_user():
     name = search_entry.get().strip()
@@ -79,7 +80,7 @@ def update_user():
 
     tk.Label(update_window, text=f"Update Details for {name}", font=("Arial", 14, "bold"), bg="#f0f0f0").pack(pady=15)
 
-#take new values from user to update
+    #take new values from user to update
     tk.Label(update_window, text="Password:", bg="#f0f0f0").pack()
     password_entry = tk.Entry(update_window)
     password_entry.insert(0, user[1])
@@ -131,6 +132,7 @@ def update_user():
             messagebox.showerror("Database Error", str(e))
     tk.Button(update_window, text="Save Changes", bg="#4CAF50", fg="white", font=("Arial", 12, "bold"), command=save_updated_details).pack(pady=20)
 
+#function to delete user from database
 def delete_user():
     name = search_entry.get()
     print(name)
@@ -141,10 +143,12 @@ def delete_user():
     else:
         messagebox.showinfo("Success", f"User '{name}' deleted successfully.")
 
+#function to reset search and user info fields
 def reset_user():
     search_entry.delete(0, tk.END)
     user_info.delete("1.0", tk.END)
 
+#function to save user data from registration form in database
 def save_user():
     name=name_entry.get()
     password=password_entry.get()
@@ -162,6 +166,7 @@ def save_user():
     except Exception as e:
         messagebox.showerror("Database Error", str(e))
 
+#function to open registration form window
 def open_registration():
     global name_entry, password_entry, gender_var, contact_entry, email_entry, qualification_var
     reg_window = tk.Toplevel(root)
@@ -210,6 +215,7 @@ def open_registration():
     reset_btn = tk.Button(frame2, text="Reset", height=1, width=5, bg="#37d158", fg="white",font=("Times New Roman", 16,"bold"),command=lambda: [name_entry.delete(0, tk.END), email_entry.delete(0, tk.END), password_entry.delete(0, tk.END), contact_entry.delete(0, tk.END), qualification_var.set("Select")])
     reset_btn.grid(row=9,column=1,padx=50,pady=20)
 
+#function to open CRUD operations window
 def open_crud():
     crud_window = tk.Toplevel(root)
     crud_window.title("CRUD Operations")
